@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 .global-btn{
-  background-color: blueviolet;
+  background-color: rgb(69, 13, 122);
   border-radius: 5px;
   padding: 5px;
   border : none;
   color: white;
 }
+
+
 
 

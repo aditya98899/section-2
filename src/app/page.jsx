@@ -1,3 +1,5 @@
+import Button from '@/components/Button';
+import Card from '@/components/Card';
 import React from 'react'
 
 const Home = () => {
@@ -9,6 +11,19 @@ const Home = () => {
         
         <input type="text" className='p-2 border border-gray-800' />
         <button className='global-btn'>Global Button </button>
+        <img src="/next.svg" alt="" />
+
+        <Button disabled={true}>My button</Button>
+        <Button >Submite</Button>
+        <Button disabled={true}>Nice</Button>
+
+        <Card title={'my card title'}
+        description={'this is a card description'}
+        primaryText={'ok'}
+        secondaryText= {'Cancle'}
+        />
+        
+        
 
     </div>
   )
