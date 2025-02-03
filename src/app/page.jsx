@@ -1,5 +1,7 @@
 import Button from '@/components/Button';
 import Card from '@/components/Card';
+import InputField from '@/components/Input';
+
 import React from 'react'
 
 const Home = () => {
@@ -23,7 +25,14 @@ const Home = () => {
         secondaryText= {'Cancle'}
         />
         
-        
+      <InputField></InputField> 
+      value={'hello'} 
+       placeholder={'Enter your name'} 
+       type={'text'} 
+       name={'name'} 
+       id={'name'}   
+
+       
 
     </div>
   )
