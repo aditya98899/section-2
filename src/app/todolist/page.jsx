@@ -19,7 +19,16 @@ const [taskList, setTasklist] = useState([
 
         if (e.code === 'Enter') {
             console.log(e.target.value);
+           
+
+            const newTask = {text : e.target.value, completed: false};
+
+            setTasklist([  newTask,...taskList,]);
             e.target.value = '';
+
+
+
+
 
         }
 
@@ -56,8 +65,8 @@ const [taskList, setTasklist] = useState([
                     <div className='p-8'>
                         {
                             taskList.map((task,index) =>{
-                            return <div key={index} className='shadow mb-5 rounded-lg p-5 bg-slate-200'>
-                                <p>{task.text}</p>
+                            return <div key={index} className='shadow mb-5 rounded-lg p-5 bg-blue-700 text-white '>
+                                <p className='font-bold'>{task.text}</p>
                             </div>
                             })
                         }
