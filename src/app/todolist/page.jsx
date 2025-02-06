@@ -1,42 +1,48 @@
 'use client'
 
+import { IconSquareRounded, IconSquareRoundedCheck, IconTrash, IconTrashFilled } from '@tabler/icons-react';
 import React, { useState } from 'react'
 
 const Todolist = () => {
 
     // let count = 0;
+    // const [count, setCount] = useState(0)
 
-    // const [count, setcount] = useState(0);
+    const [taskList, setTaskList] = useState([]);
 
-const [taskList, setTasklist] = useState([
-    {text : 'Eat Food ', completed: false },
-    {text : 'play games ', completed: false},
-    {text : 'Do Coading ', completed: false}
-
-]);
     const addNewTask = (e) => {
-        console.log(e.code);
-
+        
+        
         if (e.code === 'Enter') {
+            if(!e.target.value.trim()){
+                return alert('Please Enter a task');
+            }
+            
             console.log(e.target.value);
-           
 
-            const newTask = {text : e.target.value, completed: false};
+            const newTask ={ text: e.target.value, completed: false};
+            
+            setTaskList( [newTask, ...taskList ] );
 
-            setTasklist([  newTask,...taskList,]);
+
             e.target.value = '';
-
-
 
 
 
         }
 
     }
+    
+    const deleteTask = (index) => {
+        console.log(index);
 
+        const temp = taskList;
+        taskList.splice(index, 1);
+        setTaskList([...temp]);
+    }
 
     return (
-        <div className='bg-slate-100 h-screen'>
+        <div className='bg-slate-100 h-screen '>
             <div className='max-w-[80%] mx-auto py-10'>
 
                 <h1 className='font-bold text-center my-5 text-3xl'>TODO LIST</h1>
@@ -51,25 +57,27 @@ const [taskList, setTasklist] = useState([
                             type="text"
                         />
 
-                        {/* <h1 className='text-2xl font-bold'>{count}</h1>
-
-                        <button className='border p-3' onClick={() => {
-                            setcount(count + 1);
-                            console.log(count); */}
-
-                        {/* }}>Add Count</button> */}
-
-
-
+                         
                     </div>
-                    <div className='p-8'>
+
+                    <div className='p-8 h-[60vh] overflow-y-scroll'>
                         {
-                            taskList.map((task,index) =>{
-                            return <div key={index} className='shadow mb-5 rounded-lg p-5 bg-blue-700 text-white '>
-                                <p className='font-bold'>{task.text}</p>
-                            </div>
+                            taskList.map((task, index) => {
+                                return <div key={index} className='shadow mb-5 rounded-lg p-5 bg-blue-500 font-medium text-white flex justify-between items-center'>
+                                    <p className='font-bold'>{task.text}</p>
+                                    <div className='flex gap-3'>
+                                        <button className='p-2 rounded bg-white' onClick={() => {deleteTask(index)}}>
+                                            <IconTrash color= 'red' size ={24}  />
+                                        </button>
+                                        <button className='p-2 rounded bg-white'>
+                                            <IconSquareRoundedCheck color= 'green' size ={24}/>
+                                        </button>
+                                    </div>
+                                </div>
                             })
                         }
+
+
 
                     </div>
 
