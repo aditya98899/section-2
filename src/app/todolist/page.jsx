@@ -1,6 +1,6 @@
 'use client'
 
-import { IconSquareRounded, IconSquareRoundedCheck, IconTrash, IconTrashFilled } from '@tabler/icons-react';
+import { IconSquareRounded, IconSquareRoundedCheck, IconSquareRoundedCheckFilled, IconTrash, IconTrashFilled } from '@tabler/icons-react';
 import React, { useState } from 'react'
 
 const Todolist = () => {
@@ -37,9 +37,15 @@ const Todolist = () => {
         console.log(index);
 
         const temp = taskList;
-        taskList.splice(index, 1);
+        temp.splice(index, 1);
         setTaskList([...temp]);
     }
+
+    const toggleTask = (index) => {
+        const temp = taskList;
+        temp[index].completed = !temp[index].completed;
+        setTaskList([...temp]);
+        }
 
     return (
         <div className='bg-slate-100 h-screen '>
@@ -64,13 +70,25 @@ const Todolist = () => {
                         {
                             taskList.map((task, index) => {
                                 return <div key={index} className='shadow mb-5 rounded-lg p-5 bg-blue-500 font-medium text-white flex justify-between items-center'>
+                                    <div>
+                                    {task.completed ?
+                                     <p className='bg-white w-fit text-green-500 font-bold text-sm rounded-full px-3 '>Completed</p> : 
+                                    <p className='bg-white w-fit text-yellow-700 font-bold text-sm rounded-full px-3'>pending</p>} 
                                     <p className='font-bold'>{task.text}</p>
+                                    
+                                    
+                                    </div>
                                     <div className='flex gap-3'>
                                         <button className='p-2 rounded bg-white' onClick={() => {deleteTask(index)}}>
                                             <IconTrash color= 'red' size ={24}  />
                                         </button>
-                                        <button className='p-2 rounded bg-white'>
-                                            <IconSquareRoundedCheck color= 'green' size ={24}/>
+                                        <button className='p-2 rounded bg-white' onClick={() => {toggleTask(index)}}>
+                                            {
+                                                task.completed ?
+                                                <IconSquareRoundedCheckFilled  className='text-green-700' size ={24}/> :
+                                            
+                                            <IconSquareRoundedCheck className='text-green-700' size ={24}/>
+                               }
                                         </button>
                                     </div>
                                 </div>
